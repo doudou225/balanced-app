@@ -1,0 +1,2 @@
+FROM doudou225/nginx-varwwwhtml
+ADD temp/ /var/www/html

@@ -1,0 +1,35 @@
+version: '3'
+services:
+  web01:
+    container_name: web01
+    build:
+      context: .
+    ports:
+      - "8098:80"
+    networks:
+      - weather_app
+  
+  web02:
+    container_name: web02
+    build:
+      context: .
+      dockerfile: Dockerfile1
+    ports:
+      - "8099:80"
+    networks:
+      - weather_app
+
+  nginx:
+    container_name: nginx_lb
+    build: ./nginx
+    tty: true
+    ports:
+      - '80:80'
+    networks:
+      - frontend
+      - weather_app
+
+networks:
+  frontend:
+  weather_app:
+    internal: true
